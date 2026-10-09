@@ -1,0 +1,16 @@
+{
+  "id": "Ejjew8miODsqZA40",
+  "name": "This Slack",
+  "type": "slackApi",
+  "data": {
+    "accessToken": ""
+  },
+  "ownedBy": {
+    "type": "team",
+    "teamId": "bTbJeKfK4RMcTova",
+    "teamName": "New project"
+  },
+  "isGlobal": false,
+  "isResolvable": false,
+  "resolvableAllowFallback": false
+}
