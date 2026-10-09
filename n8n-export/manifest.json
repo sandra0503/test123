@@ -1,6 +1,6 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-09T12:21:32.325Z",
+	"exportedAt": "2026-10-09T12:22:21.225Z",
 	"sourceN8nVersion": "2.43.0",
 	"sourceId": "b306369598783dcc169f0225dacb131f662a3eb7d500ac4a7c56d7237e65b65a",
 	"workflows": [
@@ -25,15 +25,15 @@
 	"credentials": [
 		{
 			"id": "wce3ubGveJuOiL1y",
-			"name": "Slack account",
-			"target": "projects/my-project-1-j9zBU22gdNrvhe9c/credentials/slack-account-wce3ubGveJuOiL1y"
+			"name": "Slack account new",
+			"target": "projects/my-project-1-j9zBU22gdNrvhe9c/credentials/slack-account-new-wce3ubGveJuOiL1y"
 		}
 	],
 	"requirements": {
 		"credentials": [
 			{
 				"id": "wce3ubGveJuOiL1y",
-				"name": "Slack account",
+				"name": "Slack account new",
 				"type": "slackApi",
 				"usedByWorkflows": [
 					"IajL13AxOcdQwDjb"
