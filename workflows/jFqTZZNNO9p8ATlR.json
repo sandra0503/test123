@@ -205,6 +205,33 @@
       ],
       "id": "d2c18d30-5a2e-4d0f-bf64-ccafb80699b8",
       "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "abc",
+          "mode": "id"
+        },
+        "text": "Succes.",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.7,
+      "position": [
+        464,
+        16
+      ],
+      "id": "6bae159b-0405-43e2-9a52-34f268bc7493",
+      "name": "Send a message",
+      "webhookId": "a9042302-35a3-4b7c-b7bd-8229b7220a28",
+      "credentials": {
+        "slackApi": {
+          "id": "wce3ubGveJuOiL1y",
+          "name": "Slack account new"
+        }
+      }
     }
   ],
   "connections": {
@@ -229,6 +256,17 @@
           }
         ]
       ]
+    },
+    "Send Regional Welcome Email": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -236,7 +274,7 @@
     "binaryMode": "separate"
   },
   "triggerCount": 0,
-  "versionId": "e80cdf0f-a992-45d7-a231-4fce44984e8b",
+  "versionId": "c51fba41-d874-4649-9bcd-a3d5705b4540",
   "owner": {
     "type": "team",
     "teamId": "j9zBU22gdNrvhe9c",
