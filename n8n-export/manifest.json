@@ -1,13 +1,53 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-09T12:10:53.209Z",
+	"exportedAt": "2026-10-09T12:21:32.325Z",
 	"sourceN8nVersion": "2.43.0",
-	"sourceId": "34c30e758607a99bc06afd17bacd23b038cf42ea077e62ae0479f69033c897aa",
+	"sourceId": "b306369598783dcc169f0225dacb131f662a3eb7d500ac4a7c56d7237e65b65a",
+	"workflows": [
+		{
+			"id": "IajL13AxOcdQwDjb",
+			"name": "My workflow",
+			"target": "projects/my-project-1-j9zBU22gdNrvhe9c/workflows/my-workflow-IajL13AxOcdQwDjb"
+		}
+	],
 	"projects": [
+		{
+			"id": "j9zBU22gdNrvhe9c",
+			"name": "My project 1",
+			"target": "projects/my-project-1-j9zBU22gdNrvhe9c"
+		},
 		{
 			"id": "bTbJeKfK4RMcTova",
 			"name": "New project",
 			"target": "projects/new-project-bTbJeKfK4RMcTova"
 		}
-	]
+	],
+	"credentials": [
+		{
+			"id": "wce3ubGveJuOiL1y",
+			"name": "Slack account",
+			"target": "projects/my-project-1-j9zBU22gdNrvhe9c/credentials/slack-account-wce3ubGveJuOiL1y"
+		}
+	],
+	"requirements": {
+		"credentials": [
+			{
+				"id": "wce3ubGveJuOiL1y",
+				"name": "Slack account",
+				"type": "slackApi",
+				"usedByWorkflows": [
+					"IajL13AxOcdQwDjb"
+				]
+			}
+		],
+		"nodeTypes": [
+			{
+				"type": "n8n-nodes-base.slackTrigger",
+				"typeVersion": 1,
+				"usedByWorkflows": [
+					"IajL13AxOcdQwDjb"
+				]
+			}
+		]
+	}
 }
