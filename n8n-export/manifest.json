@@ -1,0 +1,13 @@
+{
+	"packageFormatVersion": "1",
+	"exportedAt": "2026-10-09T12:10:53.209Z",
+	"sourceN8nVersion": "2.43.0",
+	"sourceId": "34c30e758607a99bc06afd17bacd23b038cf42ea077e62ae0479f69033c897aa",
+	"projects": [
+		{
+			"id": "bTbJeKfK4RMcTova",
+			"name": "New project",
+			"target": "projects/new-project-bTbJeKfK4RMcTova"
+		}
+	]
+}
