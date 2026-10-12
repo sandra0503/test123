@@ -1,88 +1,13 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-09T16:40:08.361Z",
+	"exportedAt": "2026-10-12T14:25:00.413Z",
 	"sourceN8nVersion": "2.43.0",
-	"sourceId": "b306369598783dcc169f0225dacb131f662a3eb7d500ac4a7c56d7237e65b65a",
-	"workflows": [
-		{
-			"id": "IajL13AxOcdQwDjb",
-			"name": "My workflow",
-			"target": "projects/my-project-1-j9zBU22gdNrvhe9c/workflows/my-workflow-IajL13AxOcdQwDjb"
-		},
-		{
-			"id": "yeOgT0rAFIjfoL9b",
-			"name": "My workflow 2",
-			"target": "projects/new-project-bTbJeKfK4RMcTova/workflows/my-workflow-2-yeOgT0rAFIjfoL9b"
-		}
-	],
+	"sourceId": "66cc9985c1e7e1c2d1346f2697a5dc0089eb4e0f477f2e6c5a21a84aaf8992ec",
 	"projects": [
 		{
-			"id": "j9zBU22gdNrvhe9c",
-			"name": "My project 1",
-			"target": "projects/my-project-1-j9zBU22gdNrvhe9c"
-		},
-		{
-			"id": "bTbJeKfK4RMcTova",
-			"name": "New project",
-			"target": "projects/new-project-bTbJeKfK4RMcTova"
+			"id": "xNWTAtwvzJyho3Y5",
+			"name": "My project",
+			"target": "projects/my-project-xNWTAtwvzJyho3Y5"
 		}
-	],
-	"credentials": [
-		{
-			"id": "wce3ubGveJuOiL1y",
-			"name": "Slack account new",
-			"target": "projects/my-project-1-j9zBU22gdNrvhe9c/credentials/slack-account-new-wce3ubGveJuOiL1y"
-		},
-		{
-			"id": "Ejjew8miODsqZA40",
-			"name": "This Slack",
-			"target": "projects/new-project-bTbJeKfK4RMcTova/credentials/this-slack-Ejjew8miODsqZA40"
-		}
-	],
-	"requirements": {
-		"credentials": [
-			{
-				"id": "wce3ubGveJuOiL1y",
-				"name": "Slack account new",
-				"type": "slackApi",
-				"usedByWorkflows": [
-					"IajL13AxOcdQwDjb"
-				]
-			},
-			{
-				"id": "Ejjew8miODsqZA40",
-				"name": "This Slack",
-				"type": "slackApi",
-				"usedByWorkflows": [
-					"yeOgT0rAFIjfoL9b"
-				]
-			}
-		],
-		"workflows": [
-			{
-				"id": "NvPv4XzdRvajYu6k",
-				"name": "My Sub-Workflow 1",
-				"usedByWorkflows": [
-					"yeOgT0rAFIjfoL9b"
-				]
-			}
-		],
-		"nodeTypes": [
-			{
-				"type": "n8n-nodes-base.slackTrigger",
-				"typeVersion": 1,
-				"usedByWorkflows": [
-					"IajL13AxOcdQwDjb",
-					"yeOgT0rAFIjfoL9b"
-				]
-			},
-			{
-				"type": "n8n-nodes-base.executeWorkflow",
-				"typeVersion": 1.4,
-				"usedByWorkflows": [
-					"yeOgT0rAFIjfoL9b"
-				]
-			}
-		]
-	}
+	]
 }
