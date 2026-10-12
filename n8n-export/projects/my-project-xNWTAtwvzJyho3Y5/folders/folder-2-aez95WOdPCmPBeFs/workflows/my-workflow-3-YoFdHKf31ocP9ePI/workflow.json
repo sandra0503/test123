@@ -1,0 +1,31 @@
+{
+	"id": "YoFdHKf31ocP9ePI",
+	"name": "My workflow 3",
+	"nodes": [
+		{
+			"id": "43366d0a-c03a-4294-9392-a2bf51c9108d",
+			"name": "Schedule Trigger",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.4,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{}
+					]
+				}
+			}
+		}
+	],
+	"connections": {},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": "aez95WOdPCmPBeFs",
+	"isArchived": false,
+	"tagIds": []
+}

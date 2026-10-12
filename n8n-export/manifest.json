@@ -1,13 +1,64 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-12T14:25:00.413Z",
+	"exportedAt": "2026-10-12T14:26:27.157Z",
 	"sourceN8nVersion": "2.43.0",
 	"sourceId": "66cc9985c1e7e1c2d1346f2697a5dc0089eb4e0f477f2e6c5a21a84aaf8992ec",
+	"workflows": [
+		{
+			"id": "AXg3hNnYcUA3IzHP",
+			"name": "My workflow 2",
+			"target": "projects/my-project-xNWTAtwvzJyho3Y5/folders/folder-1-Gm4hSpmj1RQxz7B2/workflows/my-workflow-2-AXg3hNnYcUA3IzHP"
+		},
+		{
+			"id": "YoFdHKf31ocP9ePI",
+			"name": "My workflow 3",
+			"target": "projects/my-project-xNWTAtwvzJyho3Y5/folders/folder-2-aez95WOdPCmPBeFs/workflows/my-workflow-3-YoFdHKf31ocP9ePI"
+		},
+		{
+			"id": "elgrBOFLAshroL3r",
+			"name": "My workflow",
+			"target": "projects/my-project-xNWTAtwvzJyho3Y5/workflows/my-workflow-elgrBOFLAshroL3r"
+		}
+	],
+	"folders": [
+		{
+			"id": "Gm4hSpmj1RQxz7B2",
+			"name": "Folder 1",
+			"target": "projects/my-project-xNWTAtwvzJyho3Y5/folders/folder-1-Gm4hSpmj1RQxz7B2"
+		},
+		{
+			"id": "aez95WOdPCmPBeFs",
+			"name": "Folder 2",
+			"target": "projects/my-project-xNWTAtwvzJyho3Y5/folders/folder-2-aez95WOdPCmPBeFs"
+		}
+	],
 	"projects": [
 		{
 			"id": "xNWTAtwvzJyho3Y5",
 			"name": "My project",
 			"target": "projects/my-project-xNWTAtwvzJyho3Y5"
 		}
-	]
+	],
+	"requirements": {
+		"nodeTypes": [
+			{
+				"type": "n8n-nodes-base.scheduleTrigger",
+				"typeVersion": 1.4,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "AXg3hNnYcUA3IzHP"
+					},
+					{
+						"kind": "workflow",
+						"id": "YoFdHKf31ocP9ePI"
+					},
+					{
+						"kind": "workflow",
+						"id": "elgrBOFLAshroL3r"
+					}
+				]
+			}
+		]
+	}
 }
