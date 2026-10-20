@@ -1,0 +1,32 @@
+{
+	"id": "XaYLCrwwH1PilbQV",
+	"name": "Moved to another project",
+	"nodes": [
+		{
+			"id": "bf34c488-4ff1-478e-bba9-effbd7b32ce3",
+			"name": "Schedule Trigger",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.4,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{}
+					]
+				}
+			}
+		}
+	],
+	"connections": {},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

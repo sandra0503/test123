@@ -1,6 +1,6 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-20T15:12:15.518Z",
+	"exportedAt": "2026-10-20T15:13:32.888Z",
 	"sourceN8nVersion": "2.45.0",
 	"sourceId": "4e1aea9610add091205b697748b60e57d5e1a6fbebffe5a3d560395e9f61b4cb",
 	"workflows": [
@@ -53,6 +53,16 @@
 			"id": "AhuLAzltM2ZuXRO1",
 			"name": "Workflow using credential from another project",
 			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/workflow-using-credential-from-another-project-AhuLAzltM2ZuXRO1"
+		},
+		{
+			"id": "XaYLCrwwH1PilbQV",
+			"name": "Moved to another project",
+			"target": "projects/engineering-team-qF1oGySjBt5iZlN0/workflows/moved-to-another-project-XaYLCrwwH1PilbQV"
+		},
+		{
+			"id": "ydE6I1jHnkPnF4B0",
+			"name": "My workflow 39",
+			"target": "projects/engineering-team-qF1oGySjBt5iZlN0/workflows/my-workflow-39-ydE6I1jHnkPnF4B0"
 		}
 	],
 	"folders": [
@@ -67,13 +77,18 @@
 			"id": "xK9mPqRvNs3aYcW2",
 			"name": "Design Team 2",
 			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2"
+		},
+		{
+			"id": "qF1oGySjBt5iZlN0",
+			"name": "Engineering Team",
+			"target": "projects/engineering-team-qF1oGySjBt5iZlN0"
 		}
 	],
 	"credentials": [
 		{
 			"id": "xK1IKl53RuY3g7FA",
 			"name": "Slack 212",
-			"target": "credentials/slack-212-xK1IKl53RuY3g7FA"
+			"target": "projects/engineering-team-qF1oGySjBt5iZlN0/credentials/slack-212-xK1IKl53RuY3g7FA"
 		}
 	],
 	"variables": [
@@ -93,6 +108,10 @@
 					{
 						"kind": "workflow",
 						"id": "AhuLAzltM2ZuXRO1"
+					},
+					{
+						"kind": "workflow",
+						"id": "ydE6I1jHnkPnF4B0"
 					}
 				]
 			}
@@ -140,6 +159,10 @@
 					{
 						"kind": "workflow",
 						"id": "V3E06Dx8qK2A9s0Z"
+					},
+					{
+						"kind": "workflow",
+						"id": "XaYLCrwwH1PilbQV"
 					},
 					{
 						"kind": "workflow",
@@ -268,6 +291,10 @@
 					{
 						"kind": "workflow",
 						"id": "AhuLAzltM2ZuXRO1"
+					},
+					{
+						"kind": "workflow",
+						"id": "ydE6I1jHnkPnF4B0"
 					}
 				]
 			}

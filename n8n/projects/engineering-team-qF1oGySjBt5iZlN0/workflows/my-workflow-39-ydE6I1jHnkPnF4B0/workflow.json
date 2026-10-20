@@ -1,0 +1,43 @@
+{
+	"id": "ydE6I1jHnkPnF4B0",
+	"name": "My workflow 39",
+	"nodes": [
+		{
+			"id": "b38afed0-b9fa-4908-b675-dbc481b896cd",
+			"name": "Slack Trigger",
+			"type": "n8n-nodes-base.slackTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"trigger": [
+					"any_event"
+				],
+				"channelId": {
+					"__rl": true,
+					"value": "snms",
+					"mode": "id"
+				},
+				"options": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "xK1IKl53RuY3g7FA",
+					"name": "Slack 212"
+				}
+			},
+			"webhookId": "c90e0db3-7bdf-4c67-965b-b68c149f3ef4"
+		}
+	],
+	"connections": {},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}
