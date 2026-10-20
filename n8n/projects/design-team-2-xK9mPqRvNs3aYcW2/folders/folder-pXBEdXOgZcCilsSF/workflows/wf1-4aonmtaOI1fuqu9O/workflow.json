@@ -1,0 +1,139 @@
+{
+	"id": "4aonmtaOI1fuqu9O",
+	"name": "wf1",
+	"nodes": [
+		{
+			"id": "b150f663-e0f2-49ad-b148-8f2083a2b363",
+			"name": "Schedule Trigger",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.4,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{}
+					]
+				}
+			}
+		},
+		{
+			"id": "d5e3a276-76e7-4690-8371-15fb6e32e911",
+			"name": "Edit Fields",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.5,
+			"position": [
+				224,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
+		},
+		{
+			"id": "2598bc92-ff41-4a6f-a8e7-110c90bcdb40",
+			"name": "Edit Fields1",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.5,
+			"position": [
+				448,
+				0
+			],
+			"parameters": {
+				"assignments": {
+					"assignments": [
+						{
+							"id": "175fbf9c-8207-4be9-92e1-2e6b4e000011",
+							"name": "variable",
+							"value": "={{$vars.designTeam}}",
+							"type": "string"
+						}
+					]
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "afe0379a-b2f6-4fc1-bef2-cd4698154300",
+			"name": "Code in JavaScript",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				672,
+				0
+			],
+			"parameters": {
+				"jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = $vars(item);\n}\n\nreturn $input.all();"
+			}
+		},
+		{
+			"id": "e829e524-8937-4d85-ad87-01a590f6ae82",
+			"name": "Edit Fields2",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.5,
+			"position": [
+				784,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"Schedule Trigger": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Edit Fields": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields1",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Edit Fields1": {
+			"main": [
+				[
+					{
+						"node": "Code in JavaScript",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Code in JavaScript": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields2",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": "pXBEdXOgZcCilsSF",
+	"isArchived": false,
+	"tagIds": []
+}

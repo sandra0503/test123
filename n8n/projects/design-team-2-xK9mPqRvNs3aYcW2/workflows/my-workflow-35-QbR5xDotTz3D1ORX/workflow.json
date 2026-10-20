@@ -1,0 +1,114 @@
+{
+	"id": "QbR5xDotTz3D1ORX",
+	"name": "My workflow 35",
+	"nodes": [
+		{
+			"id": "093e37f9-d7ac-49b3-9b3c-cf9d12fd8a25",
+			"name": "Quote",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				240,
+				0
+			],
+			"parameters": {
+				"url": "https://zenquotes.io/api/random",
+				"options": {}
+			},
+			"notesInFlow": true
+		},
+		{
+			"id": "636bcfbb-09a3-48bb-9744-d3adbe8b4804",
+			"name": "Schedule Trigger",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "months",
+							"monthsInterval": 12,
+							"triggerAtHour": 6
+						}
+					]
+				}
+			},
+			"notesInFlow": true
+		},
+		{
+			"id": "1d73a966-66b9-4885-a37e-c52c18fb9550",
+			"name": "Programming joke",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				480,
+				0
+			],
+			"parameters": {
+				"url": "=https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single",
+				"options": {}
+			},
+			"notes": "Check out after running!",
+			"notesInFlow": true
+		},
+		{
+			"id": "5c828d2e-847b-4ad6-a12a-08bda96abfc9",
+			"name": "Edit Fields",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.5,
+			"position": [
+				704,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"Quote": {
+			"main": [
+				[
+					{
+						"node": "Programming joke",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Schedule Trigger": {
+			"main": [
+				[
+					{
+						"node": "Quote",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Programming joke": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": null,
+	"isArchived": true,
+	"tagIds": []
+}

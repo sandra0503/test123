@@ -1,0 +1,61 @@
+{
+	"id": "QUUM6OWnecd2MR8F",
+	"name": "My workflow 38",
+	"nodes": [
+		{
+			"id": "cda0d7c7-e389-4272-b40f-14b18e99f012",
+			"name": "When chat message received",
+			"type": "@n8n/n8n-nodes-langchain.chatTrigger",
+			"typeVersion": 1.5,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"options": {}
+			},
+			"webhookId": "9457af84-2922-4cd7-ac34-a88b7cf2bfd9"
+		},
+		{
+			"id": "917a1eda-b83c-4291-b091-567944552255",
+			"name": "Message an Agent",
+			"type": "n8n-nodes-base.messageAnAgent",
+			"typeVersion": 3.1,
+			"position": [
+				384,
+				0
+			],
+			"parameters": {
+				"agentId": {
+					"__rl": true,
+					"mode": "list",
+					"value": "Oc86aQxqEBEjKoZE",
+					"cachedResultName": "Design Team — New Agent"
+				},
+				"message": "={{ $json.chatInput }}",
+				"advanced": {}
+			}
+		}
+	],
+	"connections": {
+		"When chat message received": {
+			"main": [
+				[
+					{
+						"node": "Message an Agent",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}
