@@ -1,6 +1,6 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-20T15:50:05.591Z",
+	"exportedAt": "2026-10-20T16:13:37.155Z",
 	"sourceN8nVersion": "2.45.0",
 	"sourceId": "4e1aea9610add091205b697748b60e57d5e1a6fbebffe5a3d560395e9f61b4cb",
 	"workflows": [
@@ -87,8 +87,8 @@
 		},
 		{
 			"id": "kLMIXVnmRTi2O1Kq",
-			"name": "Slack account",
-			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/credentials/slack-account-kLMIXVnmRTi2O1Kq"
+			"name": "Slack account NEW NAME here",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/credentials/slack-account-new-name-here-kLMIXVnmRTi2O1Kq"
 		},
 		{
 			"id": "xK1IKl53RuY3g7FA",
@@ -107,7 +107,7 @@
 		"credentials": [
 			{
 				"id": "kLMIXVnmRTi2O1Kq",
-				"name": "Slack account",
+				"name": "Slack account NEW NAME here",
 				"type": "slackApi",
 				"usedBy": [
 					{
