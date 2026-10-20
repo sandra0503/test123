@@ -55,19 +55,6 @@
 			"parameters": {
 				"jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
 			}
-		},
-		{
-			"id": "c9eb7a56-14d4-43ba-96aa-45777b6dd917",
-			"name": "Edit Fields1",
-			"type": "n8n-nodes-base.set",
-			"typeVersion": 3.5,
-			"position": [
-				672,
-				0
-			],
-			"parameters": {
-				"options": {}
-			}
 		}
 	],
 	"connections": {
@@ -95,13 +82,7 @@
 		},
 		"Code in JavaScript": {
 			"main": [
-				[
-					{
-						"node": "Edit Fields1",
-						"type": "main",
-						"index": 0
-					}
-				]
+				[]
 			]
 		}
 	},

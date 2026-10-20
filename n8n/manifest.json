@@ -1,6 +1,6 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-20T15:10:57.341Z",
+	"exportedAt": "2026-10-20T15:12:15.518Z",
 	"sourceN8nVersion": "2.45.0",
 	"sourceId": "4e1aea9610add091205b697748b60e57d5e1a6fbebffe5a3d560395e9f61b4cb",
 	"workflows": [
@@ -242,16 +242,6 @@
 				]
 			},
 			{
-				"type": "n8n-nodes-base.slackTrigger",
-				"typeVersion": 1,
-				"usedBy": [
-					{
-						"kind": "workflow",
-						"id": "AhuLAzltM2ZuXRO1"
-					}
-				]
-			},
-			{
 				"type": "@n8n/n8n-nodes-langchain.chatTrigger",
 				"typeVersion": 1.5,
 				"usedBy": [
@@ -268,6 +258,16 @@
 					{
 						"kind": "workflow",
 						"id": "QUUM6OWnecd2MR8F"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.slackTrigger",
+				"typeVersion": 1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "AhuLAzltM2ZuXRO1"
 					}
 				]
 			}
