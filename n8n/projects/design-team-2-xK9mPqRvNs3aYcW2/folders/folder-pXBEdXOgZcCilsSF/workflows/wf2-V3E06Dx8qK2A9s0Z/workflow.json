@@ -1,0 +1,57 @@
+{
+	"id": "V3E06Dx8qK2A9s0Z",
+	"name": "wf2",
+	"nodes": [
+		{
+			"id": "26573b18-4345-42cc-9084-e0d6e7e413a5",
+			"name": "Schedule Trigger",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.4,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{}
+					]
+				}
+			}
+		},
+		{
+			"id": "4a9de3e4-1a35-43ad-95a5-aa035cc010fa",
+			"name": "Edit Fields",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.5,
+			"position": [
+				224,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"Schedule Trigger": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": "pXBEdXOgZcCilsSF",
+	"isArchived": false,
+	"tagIds": []
+}

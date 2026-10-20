@@ -1,0 +1,116 @@
+{
+	"id": "AhuLAzltM2ZuXRO1",
+	"name": "Workflow using credential from another project",
+	"nodes": [
+		{
+			"id": "98999794-65c1-4650-ad66-02b5292f4f9b",
+			"name": "Slack Trigger",
+			"type": "n8n-nodes-base.slackTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"trigger": [
+					"any_event"
+				],
+				"channelId": {
+					"__rl": true,
+					"value": "fererr",
+					"mode": "id"
+				},
+				"options": {}
+			},
+			"credentials": {
+				"slackApi": {
+					"id": "xK1IKl53RuY3g7FA",
+					"name": "Slack 212"
+				}
+			},
+			"webhookId": "15122724-7d44-41ca-b2ce-cde644c72975"
+		},
+		{
+			"id": "ba0b8bcd-3303-42f7-9427-b4eef40159e2",
+			"name": "Edit Fields",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.5,
+			"position": [
+				224,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
+		},
+		{
+			"id": "008355ce-190e-486d-8ca4-ce4d9ad218f3",
+			"name": "Code in JavaScript",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				448,
+				0
+			],
+			"parameters": {
+				"jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+			}
+		},
+		{
+			"id": "c9eb7a56-14d4-43ba-96aa-45777b6dd917",
+			"name": "Edit Fields1",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.5,
+			"position": [
+				672,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"Slack Trigger": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Edit Fields": {
+			"main": [
+				[
+					{
+						"node": "Code in JavaScript",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Code in JavaScript": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields1",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

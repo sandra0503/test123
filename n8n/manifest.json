@@ -1,0 +1,276 @@
+{
+	"packageFormatVersion": "1",
+	"exportedAt": "2026-10-20T15:10:35.675Z",
+	"sourceN8nVersion": "2.45.0",
+	"sourceId": "4e1aea9610add091205b697748b60e57d5e1a6fbebffe5a3d560395e9f61b4cb",
+	"workflows": [
+		{
+			"id": "4aonmtaOI1fuqu9O",
+			"name": "wf1",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/folders/folder-pXBEdXOgZcCilsSF/workflows/wf1-4aonmtaOI1fuqu9O"
+		},
+		{
+			"id": "V3E06Dx8qK2A9s0Z",
+			"name": "wf2",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/folders/folder-pXBEdXOgZcCilsSF/workflows/wf2-V3E06Dx8qK2A9s0Z"
+		},
+		{
+			"id": "imKIPGwSGlkWOCu6",
+			"name": "Engineering A",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/engineering-a-imKIPGwSGlkWOCu6"
+		},
+		{
+			"id": "aLyJmj7gJYkdoeBT",
+			"name": "My Sub-Workflow 1",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/my-sub-workflow-1-aLyJmj7gJYkdoeBT"
+		},
+		{
+			"id": "XoySPOIRqZ7o1FJe",
+			"name": "My workflow 33",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/my-workflow-33-XoySPOIRqZ7o1FJe"
+		},
+		{
+			"id": "PcgjMpbXMUayKJMu",
+			"name": "My workflow 34",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/my-workflow-34-PcgjMpbXMUayKJMu"
+		},
+		{
+			"id": "QbR5xDotTz3D1ORX",
+			"name": "My workflow 35",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/my-workflow-35-QbR5xDotTz3D1ORX"
+		},
+		{
+			"id": "QUUM6OWnecd2MR8F",
+			"name": "My workflow 38",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/my-workflow-38-QUUM6OWnecd2MR8F"
+		},
+		{
+			"id": "LiBHh31f0K5Hpr95",
+			"name": "My workflow",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/my-workflow-LiBHh31f0K5Hpr95"
+		},
+		{
+			"id": "AhuLAzltM2ZuXRO1",
+			"name": "Workflow using credential from another project",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/workflows/workflow-using-credential-from-another-project-AhuLAzltM2ZuXRO1"
+		}
+	],
+	"folders": [
+		{
+			"id": "pXBEdXOgZcCilsSF",
+			"name": "folder",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/folders/folder-pXBEdXOgZcCilsSF"
+		}
+	],
+	"projects": [
+		{
+			"id": "xK9mPqRvNs3aYcW2",
+			"name": "Design Team 2",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2"
+		}
+	],
+	"credentials": [
+		{
+			"id": "xK1IKl53RuY3g7FA",
+			"name": "Slack 212",
+			"target": "credentials/slack-212-xK1IKl53RuY3g7FA"
+		}
+	],
+	"variables": [
+		{
+			"id": "CrqolbBWKwGcI4vK",
+			"name": "designTeam",
+			"target": "projects/design-team-2-xK9mPqRvNs3aYcW2/variables/designteam-CrqolbBWKwGcI4vK"
+		}
+	],
+	"requirements": {
+		"credentials": [
+			{
+				"id": "xK1IKl53RuY3g7FA",
+				"name": "Slack 212",
+				"type": "slackApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "AhuLAzltM2ZuXRO1"
+					}
+				]
+			}
+		],
+		"workflows": [
+			{
+				"id": "aLyJmj7gJYkdoeBT",
+				"name": "My Sub-Workflow 1",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "LiBHh31f0K5Hpr95"
+					}
+				]
+			}
+		],
+		"variables": [
+			{
+				"name": "designTeam",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "4aonmtaOI1fuqu9O"
+					}
+				]
+			}
+		],
+		"nodeTypes": [
+			{
+				"type": "n8n-nodes-base.scheduleTrigger",
+				"typeVersion": 1.4,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "4aonmtaOI1fuqu9O"
+					},
+					{
+						"kind": "workflow",
+						"id": "LiBHh31f0K5Hpr95"
+					},
+					{
+						"kind": "workflow",
+						"id": "PcgjMpbXMUayKJMu"
+					},
+					{
+						"kind": "workflow",
+						"id": "V3E06Dx8qK2A9s0Z"
+					},
+					{
+						"kind": "workflow",
+						"id": "imKIPGwSGlkWOCu6"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.set",
+				"typeVersion": 3.5,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "4aonmtaOI1fuqu9O"
+					},
+					{
+						"kind": "workflow",
+						"id": "AhuLAzltM2ZuXRO1"
+					},
+					{
+						"kind": "workflow",
+						"id": "LiBHh31f0K5Hpr95"
+					},
+					{
+						"kind": "workflow",
+						"id": "QbR5xDotTz3D1ORX"
+					},
+					{
+						"kind": "workflow",
+						"id": "V3E06Dx8qK2A9s0Z"
+					},
+					{
+						"kind": "workflow",
+						"id": "XoySPOIRqZ7o1FJe"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.code",
+				"typeVersion": 2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "4aonmtaOI1fuqu9O"
+					},
+					{
+						"kind": "workflow",
+						"id": "AhuLAzltM2ZuXRO1"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.scheduleTrigger",
+				"typeVersion": 1.3,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "XoySPOIRqZ7o1FJe"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.executeWorkflow",
+				"typeVersion": 1.3,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "LiBHh31f0K5Hpr95"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.httpRequest",
+				"typeVersion": 4.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "QbR5xDotTz3D1ORX"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.scheduleTrigger",
+				"typeVersion": 1.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "QbR5xDotTz3D1ORX"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.executeWorkflowTrigger",
+				"typeVersion": 1.1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "aLyJmj7gJYkdoeBT"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.slackTrigger",
+				"typeVersion": 1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "AhuLAzltM2ZuXRO1"
+					}
+				]
+			},
+			{
+				"type": "@n8n/n8n-nodes-langchain.chatTrigger",
+				"typeVersion": 1.5,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "QUUM6OWnecd2MR8F"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.messageAnAgent",
+				"typeVersion": 3.1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "QUUM6OWnecd2MR8F"
+					}
+				]
+			}
+		]
+	}
+}

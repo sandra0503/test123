@@ -1,0 +1,40 @@
+{
+	"id": "aLyJmj7gJYkdoeBT",
+	"name": "My Sub-Workflow 1",
+	"nodes": [
+		{
+			"id": "c055762a-8fe7-4141-a639-df2372f30060",
+			"name": "When Executed by Another Workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.1,
+			"position": [
+				272,
+				352
+			],
+			"parameters": {
+				"workflowInputs": {
+					"values": [
+						{
+							"name": "name"
+						}
+					]
+				}
+			}
+		}
+	],
+	"connections": {
+		"When Executed by Another Workflow": {
+			"main": [
+				[]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"redactionPolicy": "non-manual",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

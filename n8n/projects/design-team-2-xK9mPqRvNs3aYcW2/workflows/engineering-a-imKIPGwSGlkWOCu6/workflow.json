@@ -1,0 +1,32 @@
+{
+	"id": "imKIPGwSGlkWOCu6",
+	"name": "Engineering A",
+	"nodes": [
+		{
+			"id": "a9475aad-450d-4a14-8360-5e3115e750ca",
+			"name": "Schedule Trigger",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.4,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{}
+					]
+				}
+			}
+		}
+	],
+	"connections": {},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}
