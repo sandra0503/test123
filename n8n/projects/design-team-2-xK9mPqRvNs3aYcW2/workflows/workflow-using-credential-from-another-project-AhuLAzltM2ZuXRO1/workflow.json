@@ -25,7 +25,7 @@
 			"credentials": {
 				"slackApi": {
 					"id": "kLMIXVnmRTi2O1Kq",
-					"name": "Slack account"
+					"name": "Slack account NEW NAME here"
 				}
 			},
 			"webhookId": "15122724-7d44-41ca-b2ce-cde644c72975"
@@ -55,19 +55,6 @@
 			"parameters": {
 				"jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
 			}
-		},
-		{
-			"id": "3ee92c00-0522-4ef0-9d61-569ba86c9b6b",
-			"name": "Edit Fields1",
-			"type": "n8n-nodes-base.set",
-			"typeVersion": 3.5,
-			"position": [
-				672,
-				0
-			],
-			"parameters": {
-				"options": {}
-			}
 		}
 	],
 	"connections": {
@@ -95,13 +82,7 @@
 		},
 		"Code in JavaScript": {
 			"main": [
-				[
-					{
-						"node": "Edit Fields1",
-						"type": "main",
-						"index": 0
-					}
-				]
+				[]
 			]
 		}
 	},
