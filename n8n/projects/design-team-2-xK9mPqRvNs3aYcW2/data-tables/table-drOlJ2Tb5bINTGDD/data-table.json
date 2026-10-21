@@ -1,5 +1,12 @@
 {
 	"id": "drOlJ2Tb5bINTGDD",
 	"name": "Table",
-	"columns": []
+	"columns": [
+		{
+			"id": "8Pk7Yno8QK5HPm8b",
+			"name": "name",
+			"type": "string",
+			"index": 0
+		}
+	]
 }
