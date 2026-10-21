@@ -1,0 +1,58 @@
+{
+	"id": "gmXt6MZc9ZnE6D4J",
+	"name": "B",
+	"nodes": [
+		{
+			"id": "fa490a17-83d1-40b3-b70e-853e58d1e29b",
+			"name": "When clicking ‘Execute workflow’",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {}
+		},
+		{
+			"id": "aed98522-cdbc-4060-aea1-f99a5dc7e247",
+			"name": "Get row(s)",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				224,
+				0
+			],
+			"parameters": {
+				"operation": "get",
+				"dataTableId": {
+					"__rl": true,
+					"value": "drOlJ2Tb5bINTGDD",
+					"mode": "list",
+					"cachedResultName": "Table",
+					"cachedResultUrl": "/projects/xK9mPqRvNs3aYcW2/datatables/drOlJ2Tb5bINTGDD"
+				}
+			}
+		}
+	],
+	"connections": {
+		"When clicking ‘Execute workflow’": {
+			"main": [
+				[
+					{
+						"node": "Get row(s)",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

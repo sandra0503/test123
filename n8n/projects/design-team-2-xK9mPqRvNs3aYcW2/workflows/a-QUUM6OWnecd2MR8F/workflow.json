@@ -1,6 +1,6 @@
 {
 	"id": "QUUM6OWnecd2MR8F",
-	"name": "My workflow 38",
+	"name": "A",
 	"nodes": [
 		{
 			"id": "cda0d7c7-e389-4272-b40f-14b18e99f012",
@@ -35,6 +35,27 @@
 				"message": "={{ $json.chatInput }}",
 				"advanced": {}
 			}
+		},
+		{
+			"id": "e584d408-bfa6-4699-a694-87955542690e",
+			"name": "Delete row(s)",
+			"type": "n8n-nodes-base.dataTable",
+			"typeVersion": 1.1,
+			"position": [
+				832,
+				16
+			],
+			"parameters": {
+				"operation": "deleteRows",
+				"dataTableId": {
+					"__rl": true,
+					"value": "drOlJ2Tb5bINTGDD",
+					"mode": "list",
+					"cachedResultName": "Table",
+					"cachedResultUrl": "/projects/xK9mPqRvNs3aYcW2/datatables/drOlJ2Tb5bINTGDD"
+				},
+				"options": {}
+			}
 		}
 	],
 	"connections": {
@@ -43,6 +64,17 @@
 				[
 					{
 						"node": "Message an Agent",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Message an Agent": {
+			"main": [
+				[
+					{
+						"node": "Delete row(s)",
 						"type": "main",
 						"index": 0
 					}
