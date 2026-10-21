@@ -1,0 +1,34 @@
+{
+	"id": "vrhUmHwx5dTVCo9J",
+	"name": "S",
+	"nodes": [
+		{
+			"id": "aff9c124-73c4-4b6d-8ddf-b77ba18db1e1",
+			"name": "When Executed by Another Workflow",
+			"type": "n8n-nodes-base.executeWorkflowTrigger",
+			"typeVersion": 1.3,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"workflowInputs": {
+					"values": [
+						{
+							"name": "sasa"
+						}
+					]
+				}
+			}
+		}
+	],
+	"connections": {},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

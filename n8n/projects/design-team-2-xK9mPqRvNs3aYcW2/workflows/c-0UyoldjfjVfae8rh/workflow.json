@@ -1,0 +1,79 @@
+{
+	"id": "0UyoldjfjVfae8rh",
+	"name": "C",
+	"nodes": [
+		{
+			"id": "9456c386-b866-4ec7-81da-9c81d03f353f",
+			"name": "When clicking ‘Execute workflow’",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {}
+		},
+		{
+			"id": "034d7d83-8d9b-4ed4-9b81-e5e7c00edb3b",
+			"name": "Call 'S'",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.4,
+			"position": [
+				224,
+				0
+			],
+			"parameters": {
+				"workflowId": {
+					"__rl": true,
+					"value": "vrhUmHwx5dTVCo9J",
+					"mode": "list",
+					"cachedResultUrl": "/workflow/vrhUmHwx5dTVCo9J",
+					"cachedResultName": "Design Team 2 — S"
+				},
+				"workflowInputs": {
+					"mappingMode": "defineBelow",
+					"value": {},
+					"matchingColumns": [
+						"sasa"
+					],
+					"schema": [
+						{
+							"id": "sasa",
+							"displayName": "sasa",
+							"required": false,
+							"defaultMatch": false,
+							"display": true,
+							"canBeUsedToMatch": true,
+							"type": "string",
+							"removed": false
+						}
+					],
+					"attemptToConvertTypes": false,
+					"convertFieldsToString": true
+				},
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"When clicking ‘Execute workflow’": {
+			"main": [
+				[
+					{
+						"node": "Call 'S'",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"redactionPolicy": "non-manual"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}
