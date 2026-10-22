@@ -1,6 +1,6 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-21T13:05:32.841Z",
+	"exportedAt": "2026-10-22T07:59:33.962Z",
 	"sourceN8nVersion": "2.45.0",
 	"sourceId": "4e1aea9610add091205b697748b60e57d5e1a6fbebffe5a3d560395e9f61b4cb",
 	"workflows": [
@@ -237,6 +237,10 @@
 					},
 					{
 						"kind": "workflow",
+						"id": "QUUM6OWnecd2MR8F"
+					},
+					{
+						"kind": "workflow",
 						"id": "QbR5xDotTz3D1ORX"
 					},
 					{
@@ -358,16 +362,6 @@
 				]
 			},
 			{
-				"type": "@n8n/n8n-nodes-langchain.chatTrigger",
-				"typeVersion": 1.5,
-				"usedBy": [
-					{
-						"kind": "workflow",
-						"id": "QUUM6OWnecd2MR8F"
-					}
-				]
-			},
-			{
 				"type": "n8n-nodes-base.dataTable",
 				"typeVersion": 1.1,
 				"usedBy": [
@@ -378,6 +372,16 @@
 					{
 						"kind": "workflow",
 						"id": "gmXt6MZc9ZnE6D4J"
+					}
+				]
+			},
+			{
+				"type": "@n8n/n8n-nodes-langchain.chatTrigger",
+				"typeVersion": 1.5,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "QUUM6OWnecd2MR8F"
 					}
 				]
 			}
