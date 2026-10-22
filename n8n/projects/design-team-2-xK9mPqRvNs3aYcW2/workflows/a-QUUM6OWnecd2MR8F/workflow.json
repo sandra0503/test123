@@ -36,6 +36,19 @@
 				},
 				"options": {}
 			}
+		},
+		{
+			"id": "4aebb5b4-54f1-43a3-8960-7f5c7c651443",
+			"name": "Edit Fields",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.5,
+			"position": [
+				608,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
 		}
 	],
 	"connections": {
@@ -44,6 +57,17 @@
 				[
 					{
 						"node": "Delete row(s)",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Delete row(s)": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields",
 						"type": "main",
 						"index": 0
 					}
