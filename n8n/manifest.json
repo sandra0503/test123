@@ -1,8 +1,7 @@
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-10-21T13:05:32.841Z",
-	"sourceN8nVersion": "2.45.0",
-	"sourceId": "4e1aea9610add091205b697748b60e57d5e1a6fbebffe5a3d560395e9f61b4cb",
+	"sourceN8nVersion": "2.46.0",
+	"sourceId": "97eee8841a8e86885c06695b7b8763a6c7c4d312c19ab2925f19dc2bbbbbe6bc",
 	"workflows": [
 		{
 			"id": "4aonmtaOI1fuqu9O",
@@ -73,6 +72,11 @@
 			"id": "XaYLCrwwH1PilbQV",
 			"name": "Moved to another project",
 			"target": "projects/engineering-team-qF1oGySjBt5iZlN0/workflows/moved-to-another-project-XaYLCrwwH1PilbQV"
+		},
+		{
+			"id": "lyJHAG0Qy7zlWBis",
+			"name": "My workflow",
+			"target": "projects/project-a-A12HCI8lquj1rBsi/workflows/my-workflow-lyJHAG0Qy7zlWBis"
 		}
 	],
 	"folders": [
@@ -92,6 +96,11 @@
 			"id": "qF1oGySjBt5iZlN0",
 			"name": "Engineering Team",
 			"target": "projects/engineering-team-qF1oGySjBt5iZlN0"
+		},
+		{
+			"id": "A12HCI8lquj1rBsi",
+			"name": "Project A",
+			"target": "projects/project-a-A12HCI8lquj1rBsi"
 		}
 	],
 	"credentials": [
@@ -216,6 +225,10 @@
 					{
 						"kind": "workflow",
 						"id": "imKIPGwSGlkWOCu6"
+					},
+					{
+						"kind": "workflow",
+						"id": "lyJHAG0Qy7zlWBis"
 					}
 				]
 			},
@@ -246,6 +259,10 @@
 					{
 						"kind": "workflow",
 						"id": "XoySPOIRqZ7o1FJe"
+					},
+					{
+						"kind": "workflow",
+						"id": "lyJHAG0Qy7zlWBis"
 					}
 				]
 			},
