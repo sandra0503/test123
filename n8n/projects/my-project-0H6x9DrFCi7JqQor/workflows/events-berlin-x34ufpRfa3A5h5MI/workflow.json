@@ -1,0 +1,203 @@
+{
+	"id": "x34ufpRfa3A5h5MI",
+	"name": "Events Berlin",
+	"nodes": [
+		{
+			"id": "cb2fa962-5cf0-4423-9d1c-4e28861c4c8f",
+			"name": "Every Monday",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.3,
+			"position": [
+				240,
+				304
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "weeks",
+							"triggerAtDay": [
+								1
+							],
+							"triggerAtHour": 9
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": "900a1711-1ed4-49cb-818f-09ef7f3d8dce",
+			"name": "Scrape Berlin Events",
+			"type": "n8n-nodes-base.airtop",
+			"typeVersion": 1.1,
+			"position": [
+				464,
+				304
+			],
+			"parameters": {
+				"resource": "extraction",
+				"operation": "query",
+				"sessionMode": "new",
+				"url": "https://ra.co/events/de/berlin",
+				"additionalFields": {}
+			},
+			"credentials": {
+				"airtopApi": {
+					"id": "xUD3AKpdFzglYVaS"
+				}
+			}
+		},
+		{
+			"id": "2f8d1f44-aa09-4b53-b27c-507daf571b18",
+			"name": "Parse and Filter Events",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				688,
+				304
+			],
+			"parameters": {
+				"jsCode": "// Get extracted events from Airtop\nconst response = $input.first().json;\nlet events = [];\n\n// Try to get events from the parsed response\nif (response.data?.modelResponse) {\n  const modelResponse = response.data.modelResponse;\n  \n  // If it's already parsed as JSON\n  if (typeof modelResponse === 'object' && modelResponse.events) {\n    events = modelResponse.events;\n  } \n  // If it's a string, try to parse it\n  else if (typeof modelResponse === 'string') {\n    try {\n      const parsed = JSON.parse(modelResponse);\n      events = parsed.events || [];\n    } catch (e) {\n      console.log('Could not parse model response as JSON');\n    }\n  }\n}\n\n// Calculate date range (next 3 weeks)\nconst today = new Date();\nconst threeWeeksFromNow = new Date(today);\nthreeWeeksFromNow.setDate(today.getDate() + 21);\n\n// Filter events that contain \"queer\" in description or title\nconst filteredEvents = events.filter(event => {\n  const searchText = ((event.title || '') + ' ' + (event.description || ''));\n  const hasQueer = searchText.toLowerCase().includes('queer');\n  \n  // Check date range if date is available\n  if (event.date && hasQueer) {\n    try {\n      const eventDate = new Date(event.date);\n      return eventDate >= today && eventDate <= threeWeeksFromNow;\n    } catch {\n      return hasQueer; // Include if date can't be parsed but has queer\n    }\n  }\n  \n  return hasQueer;\n});\n\n// Return formatted events\nreturn filteredEvents.map(event => ({\n  json: {\n    title: event.title || 'Untitled Event',\n    date: event.date || 'Date TBD',\n    venue: event.venue || 'Venue TBD',\n    description: event.description || '',\n    link: event.url || event.link || '',\n    location: 'Berlin'\n  }\n}));"
+			}
+		},
+		{
+			"id": "3e85ee8f-8281-4852-8f92-c34913ca3a3b",
+			"name": "Combine All Events",
+			"type": "n8n-nodes-base.aggregate",
+			"typeVersion": 1,
+			"position": [
+				912,
+				304
+			],
+			"parameters": {
+				"aggregate": "aggregateAllItemData",
+				"destinationFieldName": "events",
+				"options": {}
+			},
+			"alwaysOutputData": true
+		},
+		{
+			"id": "c7f223f4-87a0-4717-a787-616fa31246e6",
+			"name": "Format Email",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [
+				1136,
+				304
+			],
+			"parameters": {
+				"assignments": {
+					"assignments": [
+						{
+							"id": "subject",
+							"name": "subject",
+							"value": "=Queer Techno Events in Berlin - {{ $now.toFormat(\"MMMM d, yyyy\") }}",
+							"type": "string"
+						},
+						{
+							"id": "body",
+							"name": "body",
+							"value": "={{ \"<h2>Queer Techno Events in Berlin - Next 3 Weeks</h2>\" + ($json.events && $json.events.length > 0 ? $json.events.map(e => \"<div style=\\\"margin: 20px 0; padding: 15px; border-left: 3px solid #9333ea;\\\"><h3>\" + e.title + \"</h3><p><strong>Date:</strong> \" + e.date + \"</p><p><strong>Venue:</strong> \" + e.venue + \"</p><p><strong>Description:</strong> \" + e.description + \"</p>\" + (e.link ? \"<p><a href=\\\"\" + e.link + \"\\\" style=\\\"color: #9333ea;\\\">Event Link</a></p>\" : \"\") + \"</div>\").join(\"\") : \"<p>No queer techno events found for the next 3 weeks.</p>\") + \"<hr><p style=\\\"color: #666; font-size: 12px;\\\">This is your weekly digest of queer techno events in Berlin.</p>\" }}",
+							"type": "string"
+						},
+						{
+							"id": "eventCount",
+							"name": "eventCount",
+							"value": "={{ $json.events ? $json.events.length : 0 }}",
+							"type": "number"
+						}
+					]
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "7109fcd1-6842-46be-b25c-ac506cd3ffd7",
+			"name": "Send Email Summary",
+			"type": "n8n-nodes-base.gmail",
+			"typeVersion": 2.2,
+			"position": [
+				1360,
+				304
+			],
+			"parameters": {
+				"sendTo": "sandra_zollner@msn.com",
+				"subject": "={{ $json.subject }}",
+				"message": "={{ $json.body }}",
+				"options": {
+					"appendAttribution": false
+				}
+			},
+			"credentials": {
+				"gmailOAuth2": {
+					"id": "gnnYLBEL8DVd123k"
+				}
+			},
+			"webhookId": "e531dce6-8bfe-4604-9aa2-2d5f536a2edd"
+		}
+	],
+	"connections": {
+		"Every Monday": {
+			"main": [
+				[
+					{
+						"node": "Scrape Berlin Events",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Scrape Berlin Events": {
+			"main": [
+				[
+					{
+						"node": "Parse and Filter Events",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Parse and Filter Events": {
+			"main": [
+				[
+					{
+						"node": "Combine All Events",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Combine All Events": {
+			"main": [
+				[
+					{
+						"node": "Format Email",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Format Email": {
+			"main": [
+				[
+					{
+						"node": "Send Email Summary",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

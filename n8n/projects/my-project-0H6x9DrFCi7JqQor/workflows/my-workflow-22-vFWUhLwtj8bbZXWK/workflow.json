@@ -1,0 +1,62 @@
+{
+	"id": "vFWUhLwtj8bbZXWK",
+	"name": "My workflow 22",
+	"nodes": [
+		{
+			"id": "3a479e07-0ee5-4c1a-a9f1-5cfcb79030ea",
+			"name": "Telegram Trigger",
+			"type": "n8n-nodes-base.telegramTrigger",
+			"typeVersion": 1.3,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"updates": [
+					"message"
+				],
+				"additionalFields": {}
+			},
+			"credentials": {
+				"telegramApi": {
+					"id": "TzCmQfLqMNiSYvwl"
+				}
+			},
+			"webhookId": "d79d0b35-d067-4444-b5b5-4d6824883a4d"
+		},
+		{
+			"id": "fa8e8964-e363-44ee-9529-7223d981cf98",
+			"name": "Edit Fields",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [
+				208,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"Telegram Trigger": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"availableInMCP": false
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

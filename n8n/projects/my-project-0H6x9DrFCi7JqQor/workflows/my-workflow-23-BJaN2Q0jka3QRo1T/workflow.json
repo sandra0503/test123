@@ -1,0 +1,99 @@
+{
+	"id": "BJaN2Q0jka3QRo1T",
+	"name": "My workflow 23",
+	"nodes": [
+		{
+			"id": "92e652b4-064f-4a5f-a18e-8f9ebf1f74d3",
+			"name": "Schedule Trigger",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.3,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{}
+					]
+				}
+			}
+		},
+		{
+			"id": "914b1b77-b3d6-4024-828d-3752271cea65",
+			"name": "Edit Fields",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [
+				208,
+				0
+			],
+			"parameters": {
+				"assignments": {
+					"assignments": [
+						{
+							"id": "951de2a0-0e47-432d-9ef6-3a13f356716c",
+							"name": "hello",
+							"value": "world",
+							"type": "string"
+						}
+					]
+				},
+				"options": {}
+			}
+		},
+		{
+			"id": "c0470747-6000-49ea-ba59-7ac822ed9082",
+			"name": "Send an Email",
+			"type": "n8n-nodes-base.emailSend",
+			"typeVersion": 2.1,
+			"position": [
+				416,
+				0
+			],
+			"parameters": {
+				"fromEmail": "fsdf",
+				"toEmail": "fseres",
+				"options": {}
+			},
+			"credentials": {
+				"smtp": {
+					"id": "pQQQPHmlVF0aTC9S"
+				}
+			},
+			"webhookId": "6d183ea1-b448-49e7-be03-90ad2bc4bbb4"
+		}
+	],
+	"connections": {
+		"Schedule Trigger": {
+			"main": [
+				[
+					{
+						"node": "Edit Fields",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Edit Fields": {
+			"main": [
+				[
+					{
+						"node": "Send an Email",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"availableInMCP": false
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

@@ -1,0 +1,51 @@
+{
+	"id": "WQVgw1JHdjwOcz8e",
+	"name": "My workflow 20",
+	"nodes": [
+		{
+			"id": "6f168502-92ad-4231-9a78-9909a913bf6d",
+			"name": "When clicking ‘Execute workflow’",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {}
+		},
+		{
+			"id": "49e1614e-c9db-40c5-a714-ed3f5a8d23c7",
+			"name": "Call 'My Sub-Workflow 1'",
+			"type": "n8n-nodes-base.executeWorkflow",
+			"typeVersion": 1.3,
+			"position": [
+				208,
+				0
+			],
+			"parameters": {
+				"source": "parameter",
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"When clicking ‘Execute workflow’": {
+			"main": [
+				[
+					{
+						"node": "Call 'My Sub-Workflow 1'",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}
