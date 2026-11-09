@@ -1,0 +1,27 @@
+{
+	"id": "G7CQEdVncNyDhEkx",
+	"name": "Uses Postgres QA",
+	"nodes": [
+		{
+			"id": "7a26e180-2742-4732-8ad4-406c76684489",
+			"name": "Postgres",
+			"type": "n8n-nodes-base.postgres",
+			"typeVersion": 2.6,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {},
+			"credentials": {
+				"postgres": {
+					"id": "4ZlcfzMFCZicDZxK"
+				}
+			}
+		}
+	],
+	"connections": {},
+	"settings": {},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}
