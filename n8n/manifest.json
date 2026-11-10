@@ -1,8 +1,62 @@
 {
 	"packageFormatVersion": "1",
-	"sourceN8nVersion": "2.47.0",
-	"sourceId": "05c76a36f7da362f364b3583ea499bccce83ba94a55c078b0bcf29b3dee7e316",
+	"sourceN8nVersion": "3.1.0",
+	"sourceId": "0113851022152b5a0ec6c5db30b5953a2e16759b15b7f941dc4f60ecce106633",
 	"workflows": [
+		{
+			"id": "KvYae4wMGAXADpSU",
+			"name": "kk",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/folders/folder-2FAjsNDYXokBeyk3/workflows/kk-KvYae4wMGAXADpSU",
+			"isArchived": false
+		},
+		{
+			"id": "oIUSVLAMsLlUu7mB",
+			"name": "My workflow 18",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/folders/folder-2FAjsNDYXokBeyk3/workflows/my-workflow-18-oIUSVLAMsLlUu7mB",
+			"isArchived": false
+		},
+		{
+			"id": "p4Zi3YeORneXf5TV",
+			"name": "AI Agent workflow",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/workflows/ai-agent-workflow-p4Zi3YeORneXf5TV",
+			"isArchived": false
+		},
+		{
+			"id": "M9sZTVDsbUt79Rf4",
+			"name": "CI Failure - Slack",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/workflows/ci-failure-slack-M9sZTVDsbUt79Rf4",
+			"isArchived": false
+		},
+		{
+			"id": "oorGuRkgt972cEfH",
+			"name": "My workflow 17",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/workflows/my-workflow-17-oorGuRkgt972cEfH",
+			"isArchived": false
+		},
+		{
+			"id": "rZoEOhpcarh92cgJ",
+			"name": "My workflow 21",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/workflows/my-workflow-21-rZoEOhpcarh92cgJ",
+			"isArchived": false
+		},
+		{
+			"id": "IFZAXBgALVkhOJb7",
+			"name": "My workflow 24",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/workflows/my-workflow-24-IFZAXBgALVkhOJb7",
+			"isArchived": false
+		},
+		{
+			"id": "DudRpRlTKt5SC3Ab",
+			"name": "My workflow 26",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/workflows/my-workflow-26-DudRpRlTKt5SC3Ab",
+			"isArchived": false
+		},
+		{
+			"id": "K7emQKNzpipwMqY7",
+			"name": "My workflow",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/workflows/my-workflow-K7emQKNzpipwMqY7",
+			"isArchived": false
+		},
 		{
 			"id": "G7CQEdVncNyDhEkx",
 			"name": "Uses Postgres QA",
@@ -10,7 +64,19 @@
 			"isArchived": false
 		}
 	],
+	"folders": [
+		{
+			"id": "2FAjsNDYXokBeyk3",
+			"name": "folder",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/folders/folder-2FAjsNDYXokBeyk3"
+		}
+	],
 	"projects": [
+		{
+			"id": "2WJEZzFFhpRMDdUG",
+			"name": "My project",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG"
+		},
 		{
 			"id": "x9heol5mpu0JkxPn",
 			"name": "My project ",
@@ -18,6 +84,31 @@
 		}
 	],
 	"credentials": [
+		{
+			"id": "EjCzDyttlMYnF4r8",
+			"name": "Mailhooks account",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/credentials/mailhooks-account-EjCzDyttlMYnF4r8"
+		},
+		{
+			"id": "aQc3wMZkaEWIwe67",
+			"name": "n8n free OpenAI API credits",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/credentials/n8n-free-openai-api-credits-aQc3wMZkaEWIwe67"
+		},
+		{
+			"id": "Ing5eVTg6gdxK8Fy",
+			"name": "Postgres account 2",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/credentials/postgres-account-2-Ing5eVTg6gdxK8Fy"
+		},
+		{
+			"id": "eS5BmqxmR95vK4KV",
+			"name": "Query Auth account 2",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/credentials/query-auth-account-2-eS5BmqxmR95vK4KV"
+		},
+		{
+			"id": "wsxNK731MHl8U3QN",
+			"name": "Slack OAuth2 API",
+			"target": "projects/my-project-2WJEZzFFhpRMDdUG/credentials/slack-oauth2-api-wsxNK731MHl8U3QN"
+		},
 		{
 			"id": "4ZlcfzMFCZicDZxK",
 			"name": "Postgres QA",
@@ -36,6 +127,65 @@
 						"id": "G7CQEdVncNyDhEkx"
 					}
 				]
+			},
+			{
+				"id": "aQc3wMZkaEWIwe67",
+				"name": "n8n free OpenAI API credits",
+				"type": "openAiApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"id": "eS5BmqxmR95vK4KV",
+				"name": "Query Auth account 2",
+				"type": "httpQueryAuth",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "K7emQKNzpipwMqY7"
+					}
+				]
+			},
+			{
+				"id": "EjCzDyttlMYnF4r8",
+				"name": "Mailhooks account",
+				"type": "mailhooksApi",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "M9sZTVDsbUt79Rf4"
+					},
+					{
+						"kind": "workflow",
+						"id": "rZoEOhpcarh92cgJ"
+					}
+				]
+			},
+			{
+				"id": "wsxNK731MHl8U3QN",
+				"name": "Slack OAuth2 API",
+				"type": "slackOAuth2Api",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "M9sZTVDsbUt79Rf4"
+					}
+				]
+			},
+			{
+				"id": "Ing5eVTg6gdxK8Fy",
+				"name": "Postgres account 2",
+				"type": "postgres",
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "DudRpRlTKt5SC3Ab"
+					}
+				]
 			}
 		],
 		"nodeTypes": [
@@ -46,6 +196,220 @@
 					{
 						"kind": "workflow",
 						"id": "G7CQEdVncNyDhEkx"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.webhook",
+				"typeVersion": 2.1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "oIUSVLAMsLlUu7mB"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.rssFeedReadTool",
+				"typeVersion": 1.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.scheduleTrigger",
+				"typeVersion": 1.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.set",
+				"typeVersion": 3.4,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.manualTrigger",
+				"typeVersion": 1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "K7emQKNzpipwMqY7"
+					},
+					{
+						"kind": "workflow",
+						"id": "oorGuRkgt972cEfH"
+					},
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.stickyNote",
+				"typeVersion": 1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+				"typeVersion": 1.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"type": "@n8n/n8n-nodes-langchain.agent",
+				"typeVersion": 2.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.gmail",
+				"typeVersion": 2.1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "p4Zi3YeORneXf5TV"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.httpRequest",
+				"typeVersion": 4.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "K7emQKNzpipwMqY7"
+					},
+					{
+						"kind": "workflow",
+						"id": "rZoEOhpcarh92cgJ"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.dateTime",
+				"typeVersion": 2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "K7emQKNzpipwMqY7"
+					},
+					{
+						"kind": "workflow",
+						"id": "oorGuRkgt972cEfH"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.switch",
+				"typeVersion": 3.4,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "oorGuRkgt972cEfH"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-mailhooks.mailhooksTrigger",
+				"typeVersion": 2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "M9sZTVDsbUt79Rf4"
+					},
+					{
+						"kind": "workflow",
+						"id": "rZoEOhpcarh92cgJ"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.code",
+				"typeVersion": 2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "M9sZTVDsbUt79Rf4"
+					},
+					{
+						"kind": "workflow",
+						"id": "rZoEOhpcarh92cgJ"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.slack",
+				"typeVersion": 2.2,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "rZoEOhpcarh92cgJ"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.httpRequest",
+				"typeVersion": 4.4,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "M9sZTVDsbUt79Rf4"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.slack",
+				"typeVersion": 2.4,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "M9sZTVDsbUt79Rf4"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.scheduleTrigger",
+				"typeVersion": 1.4,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "IFZAXBgALVkhOJb7"
+					}
+				]
+			},
+			{
+				"type": "n8n-nodes-base.postgresTrigger",
+				"typeVersion": 1,
+				"usedBy": [
+					{
+						"kind": "workflow",
+						"id": "DudRpRlTKt5SC3Ab"
 					}
 				]
 			}

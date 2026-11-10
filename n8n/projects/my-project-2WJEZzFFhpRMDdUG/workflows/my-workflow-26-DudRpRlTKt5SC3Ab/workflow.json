@@ -1,0 +1,45 @@
+{
+	"id": "DudRpRlTKt5SC3Ab",
+	"name": "My workflow 26",
+	"nodes": [
+		{
+			"id": "8c6e2093-adf7-42f7-8447-217814b386a4",
+			"name": "Postgres Trigger",
+			"type": "n8n-nodes-base.postgresTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"schema": {
+					"__rl": true,
+					"mode": "list",
+					"value": "",
+					"cachedResultName": "",
+					"cachedResultUrl": ""
+				},
+				"tableName": {
+					"__rl": true,
+					"mode": "list",
+					"value": ""
+				},
+				"additionalFields": {},
+				"options": {}
+			},
+			"credentials": {
+				"postgres": {
+					"id": "Ing5eVTg6gdxK8Fy"
+				}
+			}
+		}
+	],
+	"connections": {},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

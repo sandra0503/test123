@@ -1,0 +1,32 @@
+{
+	"id": "IFZAXBgALVkhOJb7",
+	"name": "My workflow 24",
+	"nodes": [
+		{
+			"id": "b6eb4eb0-caae-46d4-a2e5-bf9b49b8e30c",
+			"name": "Schedule Trigger",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.4,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"rule": {
+					"interval": [
+						{}
+					]
+				}
+			}
+		}
+	],
+	"connections": {},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"availableInMCP": false
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

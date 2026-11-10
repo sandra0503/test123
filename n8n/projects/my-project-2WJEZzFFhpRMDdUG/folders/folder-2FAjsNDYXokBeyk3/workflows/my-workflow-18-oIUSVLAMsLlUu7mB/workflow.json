@@ -1,0 +1,29 @@
+{
+	"id": "oIUSVLAMsLlUu7mB",
+	"name": "My workflow 18",
+	"nodes": [
+		{
+			"id": "90d24ee5-afed-4a6b-9ca2-89c8de477f02",
+			"name": "Webhook",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2.1,
+			"position": [
+				32,
+				-64
+			],
+			"parameters": {
+				"path": "ed8a70df-c587-45e0-8d24-3b802c4dea6f",
+				"options": {}
+			},
+			"webhookId": "ed8a70df-c587-45e0-8d24-3b802c4dea6f"
+		}
+	],
+	"connections": {},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": "2FAjsNDYXokBeyk3",
+	"isArchived": false,
+	"tagIds": []
+}
