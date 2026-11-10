@@ -1,0 +1,169 @@
+{
+	"id": "oorGuRkgt972cEfH",
+	"name": "My workflow 17",
+	"nodes": [
+		{
+			"id": "f2251492-3e96-44a9-b04e-b493cac1b025",
+			"name": "When clicking ‘Execute workflow’",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {}
+		},
+		{
+			"id": "f8039ef5-a05d-4727-a99f-53092ce8c15e",
+			"name": "Date & Time",
+			"type": "n8n-nodes-base.dateTime",
+			"typeVersion": 2,
+			"position": [
+				208,
+				0
+			],
+			"parameters": {
+				"options": {}
+			}
+		},
+		{
+			"id": "4933ca88-2501-4242-af52-e9664ed1335c",
+			"name": "Switch",
+			"type": "n8n-nodes-base.switch",
+			"typeVersion": 3.4,
+			"position": [
+				416,
+				0
+			],
+			"parameters": {
+				"rules": {
+					"values": [
+						{
+							"conditions": {
+								"options": {
+									"caseSensitive": true,
+									"leftValue": "",
+									"typeValidation": "strict",
+									"version": 3
+								},
+								"conditions": [
+									{
+										"leftValue": "Monday",
+										"rightValue": "",
+										"operator": {
+											"type": "string",
+											"operation": "equals"
+										},
+										"id": "41b2ec24-774f-4455-afa9-d75ae976d875"
+									}
+								],
+								"combinator": "and"
+							}
+						},
+						{
+							"conditions": {
+								"options": {
+									"caseSensitive": true,
+									"leftValue": "",
+									"typeValidation": "strict",
+									"version": 3
+								},
+								"conditions": [
+									{
+										"id": "3e2a0b3a-0e5c-49c0-9ee7-945194a0f76f",
+										"leftValue": "Tuesday",
+										"rightValue": "",
+										"operator": {
+											"type": "string",
+											"operation": "equals",
+											"name": "filter.operator.equals"
+										}
+									}
+								],
+								"combinator": "and"
+							}
+						},
+						{
+							"conditions": {
+								"options": {
+									"caseSensitive": true,
+									"leftValue": "",
+									"typeValidation": "strict",
+									"version": 3
+								},
+								"conditions": [
+									{
+										"id": "6b3fe7dc-ddc7-4fa0-aed5-9491bbd43b73",
+										"leftValue": "",
+										"rightValue": "",
+										"operator": {
+											"type": "string",
+											"operation": "equals",
+											"name": "filter.operator.equals"
+										}
+									}
+								],
+								"combinator": "and"
+							}
+						},
+						{
+							"conditions": {
+								"options": {
+									"caseSensitive": true,
+									"leftValue": "",
+									"typeValidation": "strict",
+									"version": 3
+								},
+								"conditions": [
+									{
+										"id": "0bab7e5d-6300-428e-b059-08b10b99fe64",
+										"leftValue": "",
+										"rightValue": "",
+										"operator": {
+											"type": "string",
+											"operation": "equals",
+											"name": "filter.operator.equals"
+										}
+									}
+								],
+								"combinator": "and"
+							}
+						}
+					]
+				},
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"When clicking ‘Execute workflow’": {
+			"main": [
+				[
+					{
+						"node": "Date & Time",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Date & Time": {
+			"main": [
+				[
+					{
+						"node": "Switch",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

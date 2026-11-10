@@ -1,0 +1,213 @@
+{
+	"id": "M9sZTVDsbUt79Rf4",
+	"name": "CI Failure - Slack",
+	"nodes": [
+		{
+			"id": "ffd10697-747c-434a-baaa-b994c09ebc0c",
+			"name": "Mailhooks Trigger",
+			"type": "n8n-nodes-mailhooks.mailhooksTrigger",
+			"typeVersion": 2,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {
+				"inboxId": "64fe30da-b653-494b-87cd-379ca701e89e"
+			},
+			"credentials": {
+				"mailhooksApi": {
+					"id": "EjCzDyttlMYnF4r8"
+				}
+			},
+			"webhookId": "b33d688e-af51-4939-95f9-58485393eb8a"
+		},
+		{
+			"id": "532fafe2-3572-417c-a90c-ec3824e04e41",
+			"name": "Parse Email",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				224,
+				0
+			],
+			"parameters": {
+				"jsCode": "const items = $input.all();\nconst out = [];\nfor (const item of items) {\n  const email = item.json || {};\n  const subject = (email.subject || '') + '';\n  const body = (email.body || email.text || email.html || '') + '';\n  const subjRe = /\\[([^\\]]+)\\]\\s*(?:PR\\s+)?[Rr]un failed:\\s*(.+?)\\s+-\\s+(.+?)\\s+\\(([0-9a-f]+)\\)\\s*$/;\n  const m = subject.match(subjRe);\n  if (!m) continue;\n  const repo = m[1];\n  if (!repo || !repo.includes('n8n-io/n8n')) continue;\n  const runMatch = body.match(/\\/actions\\/runs\\/(\\d+)/);\n  const runId = runMatch ? runMatch[1] : null;\n  if (!runId) continue;\n  const branchOrPrTitle = m[3].trim();\n  const linearMatch = branchOrPrTitle.match(/\\b([a-z]+-\\d+)\\b/i);\n  const failedJobMatches = [...body.matchAll(/\\*[^*]+\\*\\s*\\/\\s*([^\\n]+)\\nFailed in/g)];\n  const failedJobNames = failedJobMatches.map((mm) => mm[1].trim());\n  out.push({\n    json: {\n      repo,\n      workflowName: m[2].trim(),\n      branchOrPrTitle,\n      shortSha: m[4].trim(),\n      runId,\n      runUrl: 'https://github.com/n8n-io/n8n/actions/runs/' + runId,\n      failedJobNames,\n      failedJobCount: failedJobNames.length,\n      linearId: linearMatch ? linearMatch[1].toUpperCase() : null,\n      subject,\n    },\n  });\n}\nreturn out;"
+			}
+		},
+		{
+			"id": "44cfb6fc-4c29-4364-bb5d-f8bfee6bf208",
+			"name": "List Jobs for Run",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.4,
+			"position": [
+				448,
+				0
+			],
+			"parameters": {
+				"url": "=https://api.github.com/repos/n8n-io/n8n/actions/runs/{{ $json.runId }}/jobs?per_page=100",
+				"options": {
+					"response": {
+						"response": {
+							"neverError": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"id": "fb814ac8-5728-4fcb-aab5-1579a69d2b33",
+			"name": "Pick First Failed Job",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				672,
+				0
+			],
+			"parameters": {
+				"jsCode": "const meta = $('Parse Email').first().json;\nconst items = $input.all();\nconst out = [];\nfor (const item of items) {\n  const response = item.json || {};\n  const allJobs = response.jobs || [];\n  const failed = allJobs.filter((j) => j.conclusion === 'failure');\n  failed.sort((a, b) => new Date(a.started_at) - new Date(b.started_at));\n  const job = failed[0];\n  if (!job) continue;\n  const failedStep = (job.steps || []).find((s) => s.conclusion === 'failure');\n  out.push({\n    json: {\n      ...meta,\n      jobId: job.id,\n      jobName: job.name,\n      jobUrl: job.html_url,\n      branch: job.head_branch || meta.branchOrPrTitle,\n      failedStepName: failedStep ? failedStep.name : null,\n    },\n  });\n}\nreturn out;"
+			}
+		},
+		{
+			"id": "1679f2f5-55b9-4776-9b41-0d8a3357c728",
+			"name": "Fetch Job Log",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.4,
+			"position": [
+				896,
+				0
+			],
+			"parameters": {
+				"url": "=https://api.github.com/repos/n8n-io/n8n/actions/jobs/{{ $json.jobId }}/logs",
+				"options": {
+					"redirect": {
+						"redirect": {}
+					},
+					"response": {
+						"response": {
+							"neverError": true,
+							"responseFormat": "text"
+						}
+					}
+				}
+			}
+		},
+		{
+			"id": "74ea89c2-5a31-426e-8321-d35a977c65fe",
+			"name": "Parse First Failure",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				1120,
+				0
+			],
+			"parameters": {
+				"jsCode": "const meta = $('Pick First Failed Job').first().json;\nconst items = $input.all();\nconst out = [];\nfor (const item of items) {\n  const raw = typeof item.json.data === 'string' ? item.json.data : (item.json.body || '');\n  const log = String(raw);\n  const clean = log.replace(/^\\S+T\\S+Z\\s/gm, '');\n  let failFile = (clean.match(/FAIL\\s+(\\S+\\.(?:test|spec)\\.[tj]sx?)/) || [])[1];\n  if (!failFile) failFile = (clean.match(/\\u00d7\\s+(\\S+\\.(?:test|spec)\\.[tj]sx?)/) || [])[1];\n  if (!failFile) failFile = null;\n  let testNameMatch = clean.match(/\\u25cf\\s+(.+?)\\n/);\n  if (!testNameMatch) testNameMatch = clean.match(/\\u2715\\s+(.+?)\\n/);\n  if (!testNameMatch) testNameMatch = clean.match(/FAIL\\s+.+\\n\\s*(.+?)\\n/);\n  const failTest = testNameMatch ? testNameMatch[1].trim() : null;\n  let errSnippet = '';\n  const markerIdx = clean.search(/[\\u25cf\\u2715]\\s+/);\n  if (markerIdx >= 0) {\n    errSnippet = clean.substring(markerIdx, markerIdx + 4000).split('\\n').slice(0, 25).join('\\n').slice(0, 1800);\n  } else {\n    const errIdx = clean.search(/^\\s*(Error|AssertionError|TypeError|##\\[error\\]):/m);\n    if (errIdx >= 0) {\n      errSnippet = clean.substring(errIdx, errIdx + 1500).split('\\n').slice(0, 20).join('\\n');\n    }\n  }\n  out.push({\n    json: {\n      ...meta,\n      failFile: failFile || 'unknown',\n      failTest: failTest || (meta.failedStepName || 'unknown'),\n      errSnippet: errSnippet || '(no parseable error block - open the job logs)',\n    },\n  });\n}\nreturn out;"
+			}
+		},
+		{
+			"id": "7f7af278-a86d-4434-9c62-b407057ce04c",
+			"name": "Slack DM",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.4,
+			"position": [
+				1344,
+				0
+			],
+			"parameters": {
+				"authentication": "oAuth2",
+				"select": "user",
+				"user": {
+					"__rl": true,
+					"value": "U0A2AHJKNDS",
+					"mode": "id"
+				},
+				"text": "=😭 [{{ $json.branchOrPrTitle }}] Test failed, check {{ $json.jobUrl }} ({{ $json.jobName }})",
+				"otherOptions": {}
+			},
+			"credentials": {
+				"slackOAuth2Api": {
+					"id": "wsxNK731MHl8U3QN"
+				}
+			},
+			"webhookId": "7ec61144-1d0a-48f3-b1e7-1e7a9d0ee22e"
+		}
+	],
+	"connections": {
+		"Mailhooks Trigger": {
+			"main": [
+				[
+					{
+						"node": "Parse Email",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Parse Email": {
+			"main": [
+				[
+					{
+						"node": "List Jobs for Run",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"List Jobs for Run": {
+			"main": [
+				[
+					{
+						"node": "Pick First Failed Job",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Pick First Failed Job": {
+			"main": [
+				[
+					{
+						"node": "Fetch Job Log",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Fetch Job Log": {
+			"main": [
+				[
+					{
+						"node": "Parse First Failure",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Parse First Failure": {
+			"main": [
+				[
+					{
+						"node": "Slack DM",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate",
+		"availableInMCP": true,
+		"timeSavedMode": "fixed",
+		"callerPolicy": "workflowsFromSameOwner"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

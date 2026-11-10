@@ -1,0 +1,153 @@
+{
+	"id": "rZoEOhpcarh92cgJ",
+	"name": "My workflow 21",
+	"nodes": [
+		{
+			"id": "a394ffe1-0805-4f22-9ab1-2021c7f0ed64",
+			"name": "Mailhooks Trigger",
+			"type": "n8n-nodes-mailhooks.mailhooksTrigger",
+			"typeVersion": 2,
+			"position": [
+				-96,
+				144
+			],
+			"parameters": {
+				"inboxId": "64fe30da-b653-494b-87cd-379ca701e89e"
+			},
+			"credentials": {
+				"mailhooksApi": {
+					"id": "EjCzDyttlMYnF4r8"
+				}
+			},
+			"webhookId": "eede116f-497c-4afc-93a9-4d5ad5fe8c65"
+		},
+		{
+			"id": "861e03ef-06f3-4228-832a-f500f5c6ea63",
+			"name": "Extract job + branch",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				128,
+				144
+			],
+			"parameters": {
+				"jsCode": "const cr = $json.body.check_run;\nconst suite = cr.check_suite;\nconst urlMatch = (cr.details_url || '').match(/\\/actions\\/runs\\/(\\d+)\\/job\\/(\\d+)/);\nconst branch = suite.head_branch || '';\nconst linearMatch = branch.match(/^([a-z]+-\\d+)/i);\n\nreturn [{\n  json: {\n    runId: urlMatch?.[1] ?? null,\n    jobId: urlMatch?.[2] ?? null,\n    jobName: cr.name,\n    branch,\n    sha: suite.head_sha,\n    shortSha: (suite.head_sha || '').slice(0, 7),\n    checkUrl: cr.html_url,\n    detailsUrl: cr.details_url,\n    linearId: linearMatch?.[1]?.toUpperCase() ?? null,\n  },\n}];\n"
+			}
+		},
+		{
+			"id": "5805a850-afb9-44b5-9047-f55ae809000d",
+			"name": "Fetch job log",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				368,
+				144
+			],
+			"parameters": {
+				"url": "=https://github.com/n8n-io/n8n/actions/runs/{{ $json.runId }}/job/{{ $json.jobId }}/logs",
+				"authentication": "predefinedCredentialType",
+				"nodeCredentialType": "githubApi",
+				"options": {
+					"redirect": {
+						"redirect": {}
+					},
+					"response": {
+						"response": {
+							"neverError": true,
+							"responseFormat": "text"
+						}
+					}
+				}
+			}
+		},
+		{
+			"id": "82271d28-033f-44f1-9700-f0fe4ef14a10",
+			"name": "Parse first failure",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [
+				592,
+				144
+			],
+			"parameters": {
+				"jsCode": "const meta = $('Extract job + branch').first().json;\nconst raw = typeof $json.data === 'string' ? $json.data : ($json.body ?? '');\nconst log = String(raw);\n\n// Strip GH log timestamps like \"2025-04-01T10:23:45.1234567Z \"\nconst clean = log.replace(/^\\S+T\\S+Z\\s/gm, '');\n\n// Jest/Vitest patterns\nconst failFile = clean.match(/FAIL\\s+(\\S+\\.(?:test|spec)\\.[tj]sx?)/)?.[1]\n  ?? clean.match(/×\\s+(\\S+\\.(?:test|spec)\\.[tj]sx?)/)?.[1]\n  ?? null;\n\n// First failing test name — Jest uses \"●  describe > it\", Vitest uses \" ✕  describe > it\"\nconst testNameMatch =\n  clean.match(/●\\s+(.+?)\\n/) ??\n  clean.match(/✕\\s+(.+?)\\n/) ??\n  clean.match(/FAIL\\s+.+\\n\\s*(.+?)\\n/);\nconst failTest = testNameMatch?.[1]?.trim() ?? null;\n\n// Error block — grab from the first ●/✕ marker, ~25 lines, capped at 1800 chars for Slack\nlet errSnippet = '';\nconst markerIdx = clean.search(/[●✕]\\s+/);\nif (markerIdx >= 0) {\n  const slice = clean.substring(markerIdx, markerIdx + 4000);\n  errSnippet = slice.split('\\n').slice(0, 25).join('\\n').slice(0, 1800);\n} else {\n  // Fallback — find first \"Error:\" line and surrounding context\n  const errIdx = clean.search(/^\\s*(Error|AssertionError|TypeError):/m);\n  if (errIdx >= 0) {\n    errSnippet = clean.substring(errIdx, errIdx + 1500).split('\\n').slice(0, 20).join('\\n');\n  }\n}\n\nreturn [{\n  json: {\n    ...meta,\n    failFile: failFile ?? 'unknown',\n    failTest: failTest ?? 'unknown',\n    errSnippet: errSnippet || '(no parseable error block — check logs link)',\n  },\n}];\n"
+			}
+		},
+		{
+			"id": "f81ee5bc-3cb8-420a-b7e0-a3e315bd5a69",
+			"name": "Slack DM",
+			"type": "n8n-nodes-base.slack",
+			"typeVersion": 2.2,
+			"position": [
+				816,
+				144
+			],
+			"parameters": {
+				"select": "user",
+				"user": {
+					"__rl": true,
+					"value": "sandra.zollner@n8n.io",
+					"mode": "username"
+				},
+				"messageType": "block",
+				"blocksUi": "={\n  \"blocks\": [\n    {\n      \"type\": \"header\",\n      \"text\": { \"type\": \"plain_text\", \"text\": \"🔴 CI failure on \" + $json.branch }\n    },\n    {\n      \"type\": \"section\",\n      \"fields\": [\n        { \"type\": \"mrkdwn\", \"text\": \"*Job:*\\n\" + $json.jobName },\n        { \"type\": \"mrkdwn\", \"text\": \"*Commit:*\\n`\" + $json.shortSha + \"`\" },\n        { \"type\": \"mrkdwn\", \"text\": \"*Test file:*\\n`\" + $json.failFile + \"`\" },\n        { \"type\": \"mrkdwn\", \"text\": \"*Failing test:*\\n\" + $json.failTest }\n      ]\n    },\n    {\n      \"type\": \"section\",\n      \"text\": { \"type\": \"mrkdwn\", \"text\": \"```\\n\" + $json.errSnippet + \"\\n```\" }\n    },\n    {\n      \"type\": \"context\",\n      \"elements\": [\n        { \"type\": \"mrkdwn\", \"text\": \"<\" + $json.checkUrl + \"|Open job logs>\" + ($json.linearId ? \" • <https://linear.app/n8n/issue/\" + $json.linearId + \"|\" + $json.linearId + \">\" : \"\") }\n      ]\n    }\n  ]\n}",
+				"otherOptions": {}
+			},
+			"disabled": true,
+			"webhookId": "db7aba5a-0b0c-4726-b5b7-e427ca9834c1"
+		}
+	],
+	"connections": {
+		"Extract job + branch": {
+			"main": [
+				[
+					{
+						"node": "Fetch job log",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Fetch job log": {
+			"main": [
+				[
+					{
+						"node": "Parse first failure",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Parse first failure": {
+			"main": [
+				[
+					{
+						"node": "Slack DM",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"Mailhooks Trigger": {
+			"main": [
+				[
+					{
+						"node": "Extract job + branch",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}

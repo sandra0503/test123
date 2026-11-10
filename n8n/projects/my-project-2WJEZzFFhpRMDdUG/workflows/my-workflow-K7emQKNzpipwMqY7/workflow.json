@@ -1,0 +1,101 @@
+{
+	"id": "K7emQKNzpipwMqY7",
+	"name": "My workflow",
+	"nodes": [
+		{
+			"id": "4fb0118f-1e65-44e5-b513-871315a2ec99",
+			"name": "HTTP Request",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [
+				208,
+				0
+			],
+			"parameters": {
+				"url": "https://jsonplaceholder.typicode.com/",
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpQueryAuth",
+				"sendQuery": true,
+				"queryParameters": {
+					"parameters": [
+						{}
+					]
+				},
+				"sendHeaders": true,
+				"headerParameters": {
+					"parameters": [
+						{}
+					]
+				},
+				"sendBody": true,
+				"bodyParameters": {
+					"parameters": [
+						{}
+					]
+				},
+				"options": {}
+			},
+			"credentials": {
+				"httpQueryAuth": {
+					"id": "eS5BmqxmR95vK4KV"
+				}
+			}
+		},
+		{
+			"id": "6ec4307b-fac1-4df6-8fb5-e5dca13977f1",
+			"name": "When clicking ‘Execute workflow’",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"parameters": {}
+		},
+		{
+			"id": "85aa3d44-d993-46cc-bbc0-884e91d95189",
+			"name": "Date & Time",
+			"type": "n8n-nodes-base.dateTime",
+			"typeVersion": 2,
+			"position": [
+				416,
+				0
+			],
+			"parameters": {
+				"operation": "addToDate",
+				"options": {}
+			}
+		}
+	],
+	"connections": {
+		"HTTP Request": {
+			"main": [
+				[
+					{
+						"node": "Date & Time",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		},
+		"When clicking ‘Execute workflow’": {
+			"main": [
+				[
+					{
+						"node": "HTTP Request",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1",
+		"binaryMode": "separate"
+	},
+	"parentFolderId": null,
+	"isArchived": false,
+	"tagIds": []
+}
